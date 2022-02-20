@@ -1,5 +1,7 @@
-import BetEngine from "./src/BetEngine.ts";
 import Runner from "./src/Runner.ts";
+import BetEngine from "./src/BetEngine.ts";
+import SocietyEngine from "./src/SocietyEngine.ts";
+import { IBetEngine } from "./src/BetEngine.ts";
+import DiceGame from "./src/Games/DiceGame.ts";
 
-const runner = new Runner(new BetEngine());
-runner.start();
+(new Runner(new BetEngine(DiceGame), new SocietyEngine())).start();

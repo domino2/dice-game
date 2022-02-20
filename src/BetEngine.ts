@@ -1,18 +1,17 @@
+import { IEvent } from "./IBasics.ts";
+import Game from "./Game.ts";
+
 export interface IBetEngine {
-  myFunction(): number;
+  onCalculationFinished: IEvent;
+  startCalculation(): void;
 }
 
-// class MyClassPrivateHelper implements IMyHelper {
-//   constructor(private cls: MyClass) {}
+abstract class ABetEngine implements IBetEngine {
+  constructor(protected game: Game) {}
+}
 
-//   public someHelperMethod(message: string): number {
-//     this.cls.someMethod(message);
-//     return 0;
-//   }
-// }
-
-export default class BetEngine {
-  public myFunction(): number {
-    return 1;
+export default class BetEngine extends ABetEngine {
+  constructor(protected game: Game) {
+    super(game);
   }
 }

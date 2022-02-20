@@ -1,11 +1,19 @@
 import { IBetEngine } from "./BetEngine.ts";
+import { ISocietyEngine } from "./SocietyEngine.ts";
 
 export default class Runner {
-  private betengine: IBetEngine;
-  constructor(betengine: IBetEngine) {
-    this.betengine = betengine;
+  private betEngine: IBetEngine;
+  private societyEngine: ISocietyEngine;
+  constructor(betEngine: IBetEngine, societyEngine: ISocietyEngine) {
+    this.betEngine = betEngine;
+    this.societyEngine = societyEngine;
   }
   public start() {
-    console.log("Starting your Deno App", this.betengine.myFunction());
+    this.betEngine.onCalculationFinished(
+      this.societyEngine.prepareNextGeneration,
+    );
+    this.societyEngine.onNextGenerationReady(this.betEngine.startCalculation);
+    this.societyEngine.prepareNextGeneration();
+    this.betEngine.startCalculation();
   }
 }
