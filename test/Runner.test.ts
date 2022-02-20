@@ -5,21 +5,17 @@ import Runner from "../src/Runner.ts";
 import BetEngine from "../src/BetEngine.ts";
 // import SocialEngine from "../src/SocialEngine.ts";
 
-
 Deno.test("main goes to connect the world", () => {
+  const mockedBetEngine = Rhum.mock(BetEngine).create();
+  const runner = new Runner(mockedBetEngine);
 
-    const mockedBetEngine = Rhum.mock(BetEngine).create();
-    const runner = new Runner(mockedBetEngine);
+  // mock.expects("myFunction").returns(2);
 
-    // mock.expects("myFunction").returns(2);
+  mockedBetEngine.myFunction = () => 2;
 
-    mockedBetEngine.myFunction = () => 2;
+  console.log(mockedBetEngine.myFunction());
 
-    console.log(mockedBetEngine.myFunction())
-
-    runner.start();
-
-    
+  runner.start();
 
   // assertEquals(typeof betengine.addgamblers, "function");
   // assertEquals(typeof betengine.startbetting, "function");
