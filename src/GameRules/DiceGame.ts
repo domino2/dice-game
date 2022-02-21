@@ -27,23 +27,23 @@ const prewins = [
 const wins = [...prewins, 6, ...prewins.reverse()];
 
 const GameRules: IGameRule[] = [
-  ...new Array(wins.length).fill(0).map((x, i) =>
+  ...new Array(wins.length).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       sum(input) !== i + 6 ? 0 : wins[i] * amount
   ),
-  ...new Array(6).fill(0).map((x, i) =>
+  ...new Array(6).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       !allSameNumber(input, i + 1) ? 0 : wins[0] * amount
   ),
-  ...new Array(6).fill(0).map((x, i) =>
+  ...new Array(6).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       !sameNumberOccurences(input, 6, i + 1) ? 0 : 4400 * amount
   ),
-  ...new Array(6).fill(0).map((x, i) =>
+  ...new Array(6).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       !sameNumberOccurences(input, 5, i + 1) ? 0 : 147 * amount
   ),
-  ...new Array(6).fill(0).map((x, i) =>
+  ...new Array(6).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       !sameNumberOccurences(input, 4, i + 1) ? 0 : 12 * amount
   ),
