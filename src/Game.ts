@@ -1,5 +1,5 @@
 export interface IGameRule {
-  (input: number[], amount: number): number
+  (input: number[], amount: number): number;
 }
 
 export default class Game {
