@@ -3,22 +3,12 @@ import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 import Runner from "../src/Runner.ts";
 import BetEngine from "../src/BetEngine.ts";
-// import SocialEngine from "../src/SocialEngine.ts";
+import SocietyEngine from "../src/SocietyEngine.ts";
 
-Deno.test("main goes to connect the world", () => {
-  const mockedBetEngine = Rhum.mock(BetEngine).create();
-  const runner = new Runner(mockedBetEngine);
+const mockedBetEngine = Rhum.mock(BetEngine).create();
+const mockedSocietyEngine = Rhum.mock(SocietyEngine).create();
+const runner = new Runner(mockedBetEngine, mockedSocietyEngine);
 
-  // mock.expects("myFunction").returns(2);
-
-  mockedBetEngine.myFunction = () => 2;
-
-  console.log(mockedBetEngine.myFunction());
-
-  runner.start();
-
-  // assertEquals(typeof betengine.addgamblers, "function");
-  // assertEquals(typeof betengine.startbetting, "function");
-  // assertEquals(typeof betengine.evaluateresult, "function");
-  // assertEquals(typeof betengine.payback, "function");
+Deno.test("that the Runner has a start function", () => {
+  assertEquals(typeof runner.start, "function");
 });

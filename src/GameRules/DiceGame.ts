@@ -1,5 +1,4 @@
 import { IGameRule } from "../Game.ts";
-import Game from "../Game.ts";
 import {
   allSameNumber,
   containsSubarray,
@@ -64,4 +63,4 @@ const GameRules: IGameRule[] = [
     containsSubarray(input, [1, 2, 3]) ? 0 : 36 * amount,
 ];
 
-export default new Game(GameRules, 0, 100, 5);
+export default GameRules;

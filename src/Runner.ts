@@ -2,11 +2,10 @@ import { IBetEngine } from "./BetEngine.ts";
 import { ISocietyEngine } from "./SocietyEngine.ts";
 
 export default class Runner {
-  private betEngine: IBetEngine;
-  private societyEngine: ISocietyEngine;
-  constructor(betEngine: IBetEngine, societyEngine: ISocietyEngine) {
-    this.betEngine = betEngine;
-    this.societyEngine = societyEngine;
+  constructor(
+    private betEngine: IBetEngine,
+    private societyEngine: ISocietyEngine,
+  ) {
   }
   public start() {
     this.betEngine.onCalculationFinished(

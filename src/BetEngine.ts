@@ -1,4 +1,4 @@
-import { IEvent } from "./IBasics.ts";
+import { IEvent } from "./Events.ts";
 import Game from "./Game.ts";
 
 export interface IBetEngine {
@@ -6,12 +6,13 @@ export interface IBetEngine {
   startCalculation(): void;
 }
 
-abstract class ABetEngine implements IBetEngine {
-  constructor(protected game: Game) {}
-}
-
-export default class BetEngine extends ABetEngine {
-  constructor(protected game: Game) {
-    super(game);
+export default class BetEngine implements IBetEngine {
+  constructor(private game: Game) {
+  }
+  onCalculationFinished(): IEvent {
+    throw new Error("Method not implemented.");
+  }
+  startCalculation(): void {
+    throw new Error("Method not implemented.");
   }
 }
