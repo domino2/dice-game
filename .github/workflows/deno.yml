@@ -29,10 +29,10 @@ jobs:
           deno-version: v1.18.0
 
       - name: Verify formatting
-        run: deno fmt --check
+        run: deno fmt src --check
 
       - name: Run linter
-        run: deno lint
+        run: deno lint src
 
       - name: Run tests
         run: deno test -A --unstable
