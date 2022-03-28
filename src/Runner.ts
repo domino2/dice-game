@@ -1,18 +1,24 @@
-import { IBetEngine } from "./BetEngine.ts";
-import { ISocietyEngine } from "./SocietyEngine.ts";
+import { IGameController } from "./GameController.ts";
+import { IPlayersEngine } from "./PlayersEngine.ts";
+import { IGame } from "./Game.ts";
 
 export default class Runner {
   constructor(
-    private betEngine: IBetEngine,
-    private societyEngine: ISocietyEngine,
+    private game: IGame,
+    private GameController: IGameController,
+    private PlayersEngine: IPlayersEngine,
   ) {
+    GameController.Game = game;
+    PlayersEngine.Game = game;
   }
   public start() {
-    this.betEngine.onCalculationFinished(
-      this.societyEngine.prepareNextGeneration,
+    this.GameController.onCalculationFinished(
+      () => this.PlayersEngine.prepareNextGeneration(),
     );
-    this.societyEngine.onNextGenerationReady(this.betEngine.startCalculation);
-    this.societyEngine.prepareNextGeneration();
-    this.betEngine.startCalculation();
+    this.PlayersEngine.onNextGenerationReady(() =>
+      this.GameController.startCalculation()
+    );
+    this.PlayersEngine.prepareNextGeneration();
+    this.GameController.startCalculation();
   }
 }

@@ -1,10 +1,10 @@
 import Runner from "./src/Runner.ts";
-import BetEngine from "./src/BetEngine.ts";
-import SocietyEngine from "./src/SocietyEngine.ts";
-import DiceGameRules from "./src/GameRules/DiceGame.ts";
-import Game from "./src/Game.ts";
+import GameController from "./src/GameController.ts";
+import PlayersEngine from "./src/PlayersEngine.ts";
+import DiceGame from "./src/GameRules/DiceGame.ts";
 
 (new Runner(
-  new BetEngine(new Game(DiceGameRules, 0, 100, 5)),
-  new SocietyEngine(),
+  new DiceGame(),
+  new GameController(),
+  new PlayersEngine(),
 )).start();
