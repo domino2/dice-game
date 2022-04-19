@@ -19,6 +19,5 @@ export default class Runner {
       this.GameController.startCalculation()
     );
     this.PlayersEngine.prepareNextGeneration();
-    this.GameController.startCalculation();
   }
 }

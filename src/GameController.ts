@@ -16,7 +16,6 @@ export default WithGameProperty()(
     }
 
     startCalculation(): void {
-      console.log("startCalculation");
       this.onCalculationFinishedEvent.trigger();
     }
   },

@@ -5,12 +5,12 @@ export interface IGameRule {
 // deno-lint-ignore no-empty-interface
 export interface IGame {}
 
+export class NullGame implements IGame {}
+
 export interface GameProperty {
   set Game(game: IGame);
   get Game(): IGame;
 }
-
-export class NullGame implements IGame {}
 
 export function WithGameProperty() {
   return <T extends new (...args: any[]) => any>(GameProperty: T) => {

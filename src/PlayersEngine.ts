@@ -16,7 +16,6 @@ export default WithGameProperty()(
     }
 
     prepareNextGeneration(): void {
-      console.log("prepareNextGeneration");
       this.onNextGenerationReadyEvent.trigger();
     }
   },
