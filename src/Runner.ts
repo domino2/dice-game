@@ -1,6 +1,6 @@
 import { IGameController } from "./GameController.ts";
 import { IPlayersEngine } from "./PlayersEngine.ts";
-import { IGame, IGameBoard, IGameSet, GameSetBuilder } from "./GameBuilder.ts";
+import { GameSetBuilder, IGame, IGameBoard, IGameSet } from "./GameBuilder.ts";
 
 export default class Runner {
   private GameSet: IGameSet;

@@ -8,13 +8,13 @@ export interface IGameController {
 }
 
 export default class implements IGameController {
-    private onCalculationFinishedEvent: Event<void> = new Event();
+  private onCalculationFinishedEvent: Event<void> = new Event();
 
-    onCalculationFinished(listener: IListener<void>): void {
-      this.onCalculationFinishedEvent.add(listener);
-    }
-
-    startCalculation(gs: IGameSet): void {
-      this.onCalculationFinishedEvent.trigger();
-    }
+  onCalculationFinished(listener: IListener<void>): void {
+    this.onCalculationFinishedEvent.add(listener);
   }
+
+  startCalculation(): void {
+    this.onCalculationFinishedEvent.trigger();
+  }
+}

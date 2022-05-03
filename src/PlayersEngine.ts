@@ -14,7 +14,7 @@ export default class implements IPlayersEngine {
     this.onNextGenerationReadyEvent.add(listener);
   }
 
-  prepareNextGeneration(gs: IGameSet): void {
+  prepareNextGeneration(): void {
     this.onNextGenerationReadyEvent.trigger();
   }
 }
