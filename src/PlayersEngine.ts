@@ -1,22 +1,20 @@
 import { IListener } from "./Events.ts";
 import Event from "./Events.ts";
-import { GameProperty, WithGameProperty } from "./Game.ts";
+import { IGameSet } from "./GameBuilder.ts";
 
-export interface IPlayersEngine extends GameProperty {
+export interface IPlayersEngine {
   onNextGenerationReady(listener: IListener<void>): void;
-  prepareNextGeneration(): void;
+  prepareNextGeneration(gs: IGameSet): void;
 }
 
-export default WithGameProperty()(
-  class PlayersEngine {
-    private onNextGenerationReadyEvent: Event<void> = new Event();
+export default class implements IPlayersEngine {
+  private onNextGenerationReadyEvent: Event<void> = new Event();
 
-    onNextGenerationReady(listener: IListener<void>): void {
-      this.onNextGenerationReadyEvent.add(listener);
-    }
+  onNextGenerationReady(listener: IListener<void>): void {
+    this.onNextGenerationReadyEvent.add(listener);
+  }
 
-    prepareNextGeneration(): void {
-      this.onNextGenerationReadyEvent.trigger();
-    }
-  },
-);
+  prepareNextGeneration(gs: IGameSet): void {
+    this.onNextGenerationReadyEvent.trigger();
+  }
+}

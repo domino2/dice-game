@@ -1,22 +1,20 @@
 import { IListener } from "./Events.ts";
 import Event from "./Events.ts";
-import { GameProperty, WithGameProperty } from "./Game.ts";
+import { IGameSet } from "./GameBuilder.ts";
 
-export interface IGameController extends GameProperty {
+export interface IGameController {
   onCalculationFinished(listener: IListener<void>): void;
-  startCalculation(): void;
+  startCalculation(gs: IGameSet): void;
 }
 
-export default WithGameProperty()(
-  class GameController {
+export default class implements IGameController {
     private onCalculationFinishedEvent: Event<void> = new Event();
 
     onCalculationFinished(listener: IListener<void>): void {
       this.onCalculationFinishedEvent.add(listener);
     }
 
-    startCalculation(): void {
+    startCalculation(gs: IGameSet): void {
       this.onCalculationFinishedEvent.trigger();
     }
-  },
-);
+  }

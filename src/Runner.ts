@@ -1,23 +1,24 @@
 import { IGameController } from "./GameController.ts";
 import { IPlayersEngine } from "./PlayersEngine.ts";
-import { IGame } from "./Game.ts";
+import { IGame, IGameBoard, IGameSet, GameSetBuilder } from "./GameBuilder.ts";
 
 export default class Runner {
+  private GameSet: IGameSet;
   constructor(
-    private game: IGame,
+    game: IGame,
+    gameBoard: IGameBoard,
     private GameController: IGameController,
     private PlayersEngine: IPlayersEngine,
   ) {
-    GameController.Game = game;
-    PlayersEngine.Game = game;
+    this.GameSet = GameSetBuilder(game, gameBoard);
   }
   public start() {
     this.GameController.onCalculationFinished(
-      () => this.PlayersEngine.prepareNextGeneration(),
+      () => this.PlayersEngine.prepareNextGeneration(this.GameSet),
     );
     this.PlayersEngine.onNextGenerationReady(() =>
-      this.GameController.startCalculation()
+      this.GameController.startCalculation(this.GameSet)
     );
-    this.PlayersEngine.prepareNextGeneration();
+    this.PlayersEngine.prepareNextGeneration(this.GameSet);
   }
 }

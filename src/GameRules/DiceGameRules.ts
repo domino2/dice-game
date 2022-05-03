@@ -1,4 +1,4 @@
-import { IGameRule } from "../Game.ts";
+import { IGameRule } from "../GameBuilder.ts";
 import {
   allSameNumber,
   containsSubarray,
