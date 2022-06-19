@@ -1,12 +1,11 @@
 import Runner from "./src/Runner.ts";
 import GameController from "./src/GameController.ts";
-import PlayersEngine from "./src/PlayersEngine.ts";
-import DiceGame from "./src/GameRules/DiceGame.ts";
-import DiceGameBoard from "./src/GameRules/DiceGameBoard.ts";
+import ActorsEngine from "./src/ActorController.ts";
+import Dices from "./src/Games/Dices/index.ts";
+
+const game = new Dices();
 
 (new Runner(
-  new DiceGame(),
-  new DiceGameBoard(),
-  new GameController(),
-  new PlayersEngine(),
+  new GameController(game),
+  new ActorsEngine(game),
 )).start();

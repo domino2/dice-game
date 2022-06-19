@@ -2,17 +2,12 @@ import { Rhum } from "./testEnvironment/Rhum.ts";
 import { assertEquals, assert } from "./testEnvironment/asserts.ts";
 
 import Runner from "../src/Runner.ts";
-import { NoGame, NoBoard } from "../src/GameBuilder.ts";
 import GameController from "../src/GameController.ts";
-import PlayersEngine from "../src/PlayersEngine.ts";
+import PlayersEngine from "../src/ActorController.ts";
 
-const mockedGame = Rhum.mock(NoGame).create();
-const mockedBoard = Rhum.mock(NoBoard).create();
 const mockedGameController = Rhum.mock(GameController).create();
 const mockedPlayersEngine = Rhum.mock(PlayersEngine).create();
 const mockedRunner = Rhum.mock(Runner).withConstructorArgs(
-  mockedGame,
-  mockedBoard,
   mockedGameController,
   mockedPlayersEngine,
 ).create();

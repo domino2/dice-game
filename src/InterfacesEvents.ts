@@ -1,6 +1,6 @@
 export type IListener<A> = (a: A) => void;
 
-export default class Event<A> {
+export class Event<A> {
   private callbacks: Array<IListener<A>> = [];
 
   public add(listener: IListener<A>): void {

@@ -1,11 +1,10 @@
-import { IGameRule } from "../GameBuilder.ts";
 import {
   allSameNumber,
   containsSubarray,
   isSameCardinalityForSameElementsSets,
   sameNumberOccurences,
   sum,
-} from "../Utilities.ts";
+} from "../../Utilities.ts";
 
 const prewins = [
   25000,
@@ -26,7 +25,7 @@ const prewins = [
 ];
 const wins = [...prewins, 6, ...prewins.reverse()];
 
-const GameRules: IGameRule[] = [
+const GameRules = [
   ...new Array(wins.length).fill(0).map((_x, i) =>
     (input: number[], amount: number) =>
       sum(input) !== i + 6 ? 0 : wins[i] * amount

@@ -1,24 +1,22 @@
-import { IGameController } from "./GameController.ts";
-import { IPlayersEngine } from "./PlayersEngine.ts";
-import { GameSetBuilder, IGame, IGameBoard, IGameSet } from "./GameBuilder.ts";
+import { IActorController, IGameController } from "./Interfaces.ts";
 
 export default class Runner {
-  private GameSet: IGameSet;
   constructor(
-    game: IGame,
-    gameBoard: IGameBoard,
     private GameController: IGameController,
-    private PlayersEngine: IPlayersEngine,
-  ) {
-    this.GameSet = GameSetBuilder(game, gameBoard);
-  }
+    private ActorController: IActorController,
+  ) {}
   public start() {
     this.GameController.onCalculationFinished(
-      () => this.PlayersEngine.prepareNextGeneration(this.GameSet),
+      () => {
+        // NOTE: this is commented out for now as single cycle is good enough to see the code in action
+        // this.ActorController.prepareNextGeneration();
+        console.log("Calculation Finished");
+      },
     );
-    this.PlayersEngine.onNextGenerationReady(() =>
-      this.GameController.startCalculation(this.GameSet)
+    this.ActorController.onNextGenerationReady((actors) =>
+      console.log("Next Generation is ready", actors)
+      // this.GameController.startCalculation(actors)
     );
-    this.PlayersEngine.prepareNextGeneration(this.GameSet);
+    this.ActorController.prepareNextGeneration();
   }
 }
