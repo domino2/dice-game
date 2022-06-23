@@ -9,14 +9,14 @@ export default class Runner {
     this.GameController.onCalculationFinished(
       () => {
         // NOTE: this is commented out for now as single cycle is good enough to see the code in action
-        // this.ActorController.prepareNextGeneration();
+        // this.ActorController.prepareNextActors();
         console.log("Calculation Finished");
       },
     );
-    this.ActorController.onNextGenerationReady((actors) =>
-      console.log("Next Generation is ready", actors)
-      // this.GameController.startCalculation(actors)
+    this.ActorController.onActorsReady((actors) =>
+      // console.log("Next Generation is ready", actors)
+      this.GameController.startCalculation(actors)
     );
-    this.ActorController.prepareNextGeneration();
+    this.ActorController.prepareNextActors();
   }
 }

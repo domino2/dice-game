@@ -5,13 +5,16 @@ export interface IRule {
 }
 
 export interface IBoard {
-  clear(): void;
-  hasSpace(): boolean;
+  freeSpace(): number;
+  slotCount(): number;
+  startRound(): void;
 }
 
 export interface IGame {
   get Board(): IBoard;
   get Rules(): IRule[];
+  buildActor(): IActor;
+  allowFairGame(): boolean;
 }
 
 export interface IActor {
@@ -24,6 +27,6 @@ export interface IGameController {
 }
 
 export interface IActorController {
-  onNextGenerationReady(listener: IListener<IActor[]>): void;
-  prepareNextGeneration(): void;
+  onActorsReady(listener: IListener<IActor[]>): void;
+  prepareNextActors(): void;
 }
