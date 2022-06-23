@@ -57,10 +57,34 @@ export default class implements IGame {
 
       Nekdy nas zajima predchozi uspech/neuspech abychom mohli napriklad riskovat vice, proto actor si pamatuje 
       sve predchozi akce a muze je zhodnotit, pokud je ve hre dlouho, primo si pamatuje akce z aktualniho kola a 
-      co se tyce predchozich kol, muse pristoupit do database a zhodnotit je. K tomuto bude slouzit log services.
+      co se tyce predchozich kol, muse pristoupit do database a zhodnotit je. K tomuto bude slouzit board, protoze
+      board slouzi i jako log aktivit hracu. Board je aktualni stav "hriste", ovsem v teto konkretni hre nas nezajima
+      a zaroven je Board zaznamovym mediem, odkud actor ziskava informace o svych predchozich aktivitach.
 
+      pro uceli evoluce nas zajima jak se actor drzel v kazdem kole a pak i jak se drzel v kazde hre a jaky byl jeho bank
+      tzn. ze kaze odehrata hra oznaci kazdeho hrace podle jeho dilcich i absolutniho vysledku kde ukolem je
+      maximalizovat jednotlive hodnoty s danou prioritou. Samozrejme priority je soucasti definice actora.
+
+      Actor je tedy
+
+      prostredky, kde
+      10000
+      je limit pro pocet vkladu, ovsem pokud nastane vyhra, prostredky se zvysi
+
+      field, kde
+      [
+        strategiea, strategieb, strategiec, vklada,
+        strategiea, strategiec, strategiee, vkladb,
+        strategiec, strategied, strategiea, vkladc,
+        ...
+      ]
       
+      s tim, ze se vklada cely field, omezene jsou pouze prostredky hrace (pro vklad)
 
+      vysledkem je pak: 
+      field (2D pole), ktere nam rekne ktere strategie vyhrali/prohrali a vyhra
+
+      Pro uceli evoluce se vyhodnoti vysledek a actor dostane nalepku, podle ktere se pak v evoluci prokaze
     
     */
 
